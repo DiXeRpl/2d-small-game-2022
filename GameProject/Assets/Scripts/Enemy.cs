@@ -42,8 +42,6 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log(canvasScaler.referenceResolution);
-        //Debug.Log(transform.localPosition);
         // Ruszamy sie
         isMoving = true;
 
@@ -78,18 +76,19 @@ public class Enemy : MonoBehaviour
 
     private void LateUpdate()
     {
-        // Zebranie poaktualnego polozenia
+        // Zebranie aktualnego polozenia
         Vector3 currentPosition = transform.localPosition;
 
         // Sprawdzenie czy polozenie wychodzi poza ekran - jesli tak to korekta
         currentPosition.x = Mathf.Clamp(currentPosition.x, -1 * canvasScaler.referenceResolution.x / 2, canvasScaler.referenceResolution.x / 2);
         currentPosition.y = Mathf.Clamp(currentPosition.y, -1 * canvasScaler.referenceResolution.y / 2, canvasScaler.referenceResolution.y / 2);
 
-        // Jesli nie by³o korekty
-        /*if (transform.position == currentPosition)
+        // Jesli by³a korekta - enemy dotknal krawedzi ekranu
+        if (transform.localPosition != currentPosition)
         {
-            Debug.Log("Nie trzeba korekty");
-        }*/
+            Debug.Log("Trzeba korekte");
+            RandomMove();
+        }
 
         // Oddanie polozenia po korekcie
         transform.localPosition = currentPosition;
