@@ -356,6 +356,7 @@ MonoBehaviour:
   speedEnemy: 40
   spawnScreenRange: 0.4
   enemiesCount: 1000
+  distanceFromPlayer: 150
 --- !u!1 &916015497
 GameObject:
   m_ObjectHideFlags: 0

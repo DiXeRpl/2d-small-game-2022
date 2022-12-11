@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
             float distance = Vector3.Distance(this.transform.position, player.transform.position);
 
             // Jesli player jest blisko
-            if (distance < 100)
+            if (distance < playManager.distanceFromPlayer)
             {
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, - 1 * playManager.speedEnemy * Time.deltaTime);
             }
@@ -83,10 +83,10 @@ public class Enemy : MonoBehaviour
         currentPosition.x = Mathf.Clamp(currentPosition.x, -1 * canvasScaler.referenceResolution.x / 2, canvasScaler.referenceResolution.x / 2);
         currentPosition.y = Mathf.Clamp(currentPosition.y, -1 * canvasScaler.referenceResolution.y / 2, canvasScaler.referenceResolution.y / 2);
 
-        // Jesli by³a korekta - enemy dotknal krawedzi ekranu
+        // Jesli by³a korekta, czyli enemy dotknal krawedzi ekranu
         if (transform.localPosition != currentPosition)
         {
-            Debug.Log("Trzeba korekte");
+            //Debug.Log("Trzeba korekte");
             RandomMove();
         }
 

@@ -11,6 +11,7 @@ public class PlayManager : BaseManager
     public float speedEnemy;
     public float spawnScreenRange;
     public int enemiesCount;
+    public float distanceFromPlayer;
 
     // Start is called before the first frame update
     void Start()
