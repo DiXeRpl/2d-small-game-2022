@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour
     private Player player;
     private PlayManager playManager;
 
+    // Zablokowanie uciekania enemy poza ekran
+    public CanvasScaler canvasScaler;
+
     // Kolider
     public BoxCollider colliderEnemy;
 
@@ -29,11 +32,18 @@ public class Enemy : MonoBehaviour
         {
             playManager = FindObjectOfType<PlayManager>();
         }
+
+        if (canvasScaler == null)
+        {
+            canvasScaler = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CanvasScaler>();
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(canvasScaler.referenceResolution);
+        Debug.Log(transform.localPosition);
         // Ruszamy sie
         isMoving = true;
 
@@ -52,7 +62,7 @@ public class Enemy : MonoBehaviour
             // Jesli player jest blisko
             if (distance < 100)
             {
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, -1 * playManager.speedEnemy * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, - 1 * playManager.speedEnemy * Time.deltaTime);
             }
             // Jesli player jest daleko
             else
@@ -60,6 +70,29 @@ public class Enemy : MonoBehaviour
                 transform.position += move * playManager.speedEnemy * Time.deltaTime;
             }
         }
+    }
+
+    /*
+     * Klatka po Update
+     */
+
+    private void LateUpdate()
+    {
+        // Zebranie poaktualnego polozenia
+        Vector3 currentPosition = transform.localPosition;
+
+        // Sprawdzenie czy polozenie wychodzi poza ekran - jesli tak to korekta
+        currentPosition.x = Mathf.Clamp(currentPosition.x, -1 * canvasScaler.referenceResolution.x / 2, canvasScaler.referenceResolution.x / 2);
+        currentPosition.y = Mathf.Clamp(currentPosition.y, -1 * canvasScaler.referenceResolution.y / 2, canvasScaler.referenceResolution.y / 2);
+
+        // Jesli nie by³o korekty
+        /*if (transform.position == currentPosition)
+        {
+            Debug.Log("Nie trzeba korekty");
+        }*/
+
+        // Oddanie polozenia po korekcie
+        transform.localPosition = currentPosition;
     }
 
     /*

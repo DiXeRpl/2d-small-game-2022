@@ -14,11 +14,7 @@ public class PlayManager : BaseManager
     // Start is called before the first frame update
     void Start()
     {
-        /*Debug.Log("Screen W: " + Screen.width);
-        Debug.Log("Screen H: " + Screen.height);*/
-
-        GenerateMap(1000);
-
+        GenerateMap(1);
     }
 
     /*
