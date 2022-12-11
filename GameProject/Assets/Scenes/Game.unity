@@ -355,6 +355,7 @@ MonoBehaviour:
   speed: 260
   speedEnemy: 40
   spawnScreenRange: 0.4
+  enemiesCount: 1000
 --- !u!1 &916015497
 GameObject:
   m_ObjectHideFlags: 0

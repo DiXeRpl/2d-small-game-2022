@@ -42,8 +42,8 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(canvasScaler.referenceResolution);
-        Debug.Log(transform.localPosition);
+        //Debug.Log(canvasScaler.referenceResolution);
+        //Debug.Log(transform.localPosition);
         // Ruszamy sie
         isMoving = true;
 

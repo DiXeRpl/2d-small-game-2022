@@ -10,11 +10,12 @@ public class PlayManager : BaseManager
     public float speed;
     public float speedEnemy;
     public float spawnScreenRange;
+    public int enemiesCount;
 
     // Start is called before the first frame update
     void Start()
     {
-        GenerateMap(1);
+        GenerateMap(enemiesCount);
     }
 
     /*
